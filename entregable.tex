@@ -1,0 +1,82 @@
+% !TeX spellcheck = es_ES
+\documentclass[a4paper, spanish]{article}
+\usepackage[utf8]{inputenc} % Formato
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{csquotes}
+\usepackage{booktabs}
+\usepackage[spanish, mexico]{babel}
+\usepackage[bottom=4cm]{geometry}
+\usepackage{upquote}
+\usepackage[scaled=1]{helvet}
+% Usar sans para las secciones
+\usepackage{sectsty}
+\allsectionsfont{\normalfont\sffamily\bfseries}
+\usepackage{enumitem} % Para \begin{enumerate}[label=\Alph*)]..
+\usepackage{cite}
+\usepackage{tipa}
+\usepackage{multirow}
+\usepackage{adjustbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[dvipsnames]{xcolor}
+\definecolor{azulOscuro}{rgb}{0.0, 0.28, 0.67}
+\definecolor{verdeCopado}{rgb}{0.13, 0.55, 0.13}
+\usepackage{listings}
+\input{headerlisting.tex}
+\usepackage{setspace}
+\usepackage{hyperref} % Es para la url o el indice
+\hypersetup{
+	colorlinks=true,
+	linkcolor=black,
+	citecolor=verdeCopado,
+	filecolor=PineGreen,
+	urlcolor=azulOscuro,
+	linktoc=all,
+	pdftitle={TP2 - 2017},
+	pdfauthor={Ternouski, Garcia, Sanchez}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{init_caratula.tex}
+
+\usepackage{appendix}
+\renewcommand{\appendixname}{Apéndice} 
+\renewcommand{\appendixtocname}{Apéndice}
+\renewcommand{\appendixpagename}{\normalfont\bfseries Apéndice}
+\usepackage{chngcntr}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\arraystretch{1.3}
+
+\usepackage[edges]{forest}
+
+\usepackage{fp}
+
+\newcommand{\code}[1]{\texttt{#1}}
+
+\newcommand{\pagDNS}[0]{www.ledcartel.com}
+
+\begin{document}
+	\renewcommand\refname{Bibliografías} % Para cambiar el nombre referencias a Bibliografias.
+	\hypersetup{pageanchor=false}
+	\maketitle
+	\tableofcontents % indice de contenidos
+	\addtocontents{toc}{\protect\thispagestyle{empty}}
+	\clearpage
+	\hypersetup{pageanchor=true}
+
+	\setcounter{page}{1}
+    
+	\input{desarrollo.tex}
+	
+	\input{apendice.tex}
+
+\end{document}

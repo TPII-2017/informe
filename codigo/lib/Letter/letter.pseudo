@@ -1,0 +1,36 @@
+#include <SPI.h>
+
+void Letter::init()
+{
+	SPI.begin();
+	sendCommand(MAX7219_REG_TESTMODE, 0x00);	// No test mode
+	sendCommand(MAX7219_REG_SHUTDOWN, 0x00); 	// Shutdown
+	sendCommand(MAX7219_REG_DECODEMODE, 0x00); 	// No decode
+	sendCommand(MAX7219_REG_INTENSITY, 0x06); 	// Medium intensity
+	sendCommand(MAX7219_REG_SCANLIMIT, 0x07); 	// Scan all columns
+	clearScreen();
+	sendCommand(MAX7219_REG_SHUTDOWN, 0x01);	// Turn on
+}
+
+
+#define MESSAGE_SIZE	6
+
+void Letter::setMessage(const char* message, uint8_t strlen, int16_t srate);
+
+#define MAX_LETTERS		32
+
+void Letter::setMap(const uint8_t* cols, uint8_t columnsCnt, int16_t srate);
+
+enum predefined_t{noPredefined = 0, smile, pacman, newLife};
+
+void Letter::setPredefined(predefined_t pre, int16_t slideRate);
+
+void Letter::tick();
+
+void Letter::setPartyOn();
+
+void Letter::setEnabled(bool enabled);
+
+void Letter::setIntensity(uint8_t intesity);
+
+void Letter::clearScreen();

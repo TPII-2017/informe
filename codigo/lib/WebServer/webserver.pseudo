@@ -1,0 +1,51 @@
+#include <FS.h>
+
+void WebServer::init()
+{
+	SPIFFS.begin();
+	initWifi(ssid, password);
+	initDnsServer();
+	initWebServer();	
+}
+
+void initWifi(const char* ssid, const char* passowrd);
+
+void initDnsServer();
+
+
+#include <ESP8266WebServer.h>
+
+void initWebServer()
+{
+	ESP8266WebServer server(80);
+	server.onNotFound(handleNotFound);
+	server.on("/authentication", HTTP_POST, handlePostAuthentication);
+	server.on("/authentication", HTTP_GET, handleGetAuthentication);
+	server.on("/phrase", HTTP_POST, handlePostPhrase);
+	server.on("/matrix", HTTP_POST, handlePostMatrix);
+	server.on("/predefined", HTTP_POST, handlePostPredefined);
+	server.on("/party", HTTP_GET, handleGetPartyOn);
+	server.on("/", HTTP_GET, handleGetIndex);
+	server.on("/static/favicon.png", HTTP_GET, handleGetFavicon);
+	server.on("/admin", HTTP_POST, handlePostAdmin);
+	server.on("/clear", HTTP_GET, handleGetClear);
+
+	server.begin();
+}
+
+void WebServer::handleGetIndex()
+{
+	String file = SPIFFS.open("/index.html", "r");
+	sendResponse(200, file);
+}
+
+void WebServer::handlePostMatrix()
+{
+	Args args = getArgs();
+	process(args);
+	String file = SPIFFS.open("/response.html", "r");
+	sendResponse(200, file);
+	
+}
+
+void WebServer::tick();

@@ -1,0 +1,14 @@
+$ apt-get install git
+$ sudo unzip VSCode-linux-x64.zip -d /opt/vscode
+$ cd /opt/vscode
+$ ./Code
+[Desktop Entry]
+Name=Visual Studio Code
+Comment=Editor de código Visual Studio Linux
+Exec=/opt/vscode/Code
+Icon=/opt/vscode/resources/app/vso.png
+Terminal=false
+Type=Application
+$ git clone https://github.com/trorik23/tpii.git
+$ cd tpii/web
+./script.sh

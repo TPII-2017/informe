@@ -1,0 +1,56 @@
+\usepackage{datetime}% http://ctan.org/pkg/datetime
+\newdateformat{mifecha}{\monthname[\THEMONTH] de \THEYEAR}
+\makeatletter
+\renewcommand{\monthnamespanish}[1][\month]{%
+	\@orgargctr=#1\relax
+	\ifcase\@orgargctr
+	\PackageError{datetime}{Invalid Month number \the\@orgargctr}{%
+		Month numbers should go from 1 to 12}%
+	\or Enero%
+	\or Febrero%
+	\or Marzo%
+	\or Abril%
+	\or Mayo%
+	\or Junio%
+	\or Julio%
+	\or Agosto%
+	\or Septiembre%
+	\or Octubre%
+	\or Noviembre%
+	\or Diciembre%
+	\else \PackageError{datetime}{Invalid Month number \the\@orgargctr}{%
+		Month numbers should go from 1 to 12}%
+	\fi}
+
+\renewcommand{\maketitle}{%
+	\begin{titlepage}
+		\singlespacing
+		\begin{center}
+			\begin{minipage}[t][7.6cm]{10.5cm}
+				\begin{center}
+					\centering
+					{\includegraphics[width=1\textwidth]{imagenes/logos.pdf}\par}
+					\vspace{10mm}
+					{\scshape\LARGE Informe final \par}
+					\vspace{5mm}
+					{\Large Remera LED controlado por web \par}
+					\vspace{5mm}
+					{\large Taller de Proyecto 2 (I118) \par}
+					\vspace{2cm}
+					
+					{\LARGE\textbf{}\par}\vfill
+					\vspace{4cm}
+					{\Large García, Agustín (824/0)\par Sanchez, Agustín (939/2)\par Ternouski, Nahuel (756/6)}
+				\end{center}
+			\end{minipage}
+			\vfill
+			{\large \par \mifecha\today \par}
+		\end{center}
+	\end{titlepage}
+	\if@twoside
+	\thispagestyle{empty}
+	\cleardoublepage
+	\else
+	\addtocounter{page}{1}
+	\fi
+}
